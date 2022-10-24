@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="header">
+        <button class="back-btn" routerLink="/webshop"><img src="assets/images/back-arrow.png"></button>
+        <p class="header-title">Cart</p>
+    </div>
+
+    <div class="main">
+        <ul>
+            <li *ngFor="let cloth of clothes | paginate: {itemsPerPage:6,currentPage:p}">
+                <div class="goods-container">
+                    <div class="img-container"><img [src]="cloth.img"></div>
+                    <div class="details-container">
+                        <table>
+                            <tr>
+                                <td>{{cloth.name}}</td>
+                                <td width="5%">{{cloth.size}}</td>
+                                <td width="10%">{{cloth.gender}}</td>
+                                <td width="10%">{{cloth.color}}</td>
+                                <td width="10%">{{cloth.type}}</td>
+                                <td width="20%">{{cloth.price}} Ft</td>
+                                <td width="5%">
+                                    <button class="delete-btn" (click)="onDeleteCartCloth(cloth._id)"><img src="assets/images/delete.png"></button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </li>
+        </ul>        
+    </div>
+    <div class="buy">
+        <button class="buy-btn" (click)="onBuyClothes()">Buy</button>
+    </div>
+    <div class="page-box">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>
+
+<div class="succes-container" *ngIf="isVisibleSucces">
+    <div class="succes-buy">
+        <p class="succes-msg">successful purchase!</p>
+        <button class="succes-btn" (click)="onSucces()">OK</button>
+    </div>
+</div>

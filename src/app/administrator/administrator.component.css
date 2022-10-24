@@ -1,0 +1,295 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    font-family: sans-serif;
+}
+
+.container {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    width: 95%;
+    height: 100%;
+    min-height: 600px;
+    min-width: 1250px;
+    background-color: whitesmoke;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.container .header {
+    width: 99,8%;
+    height: 10vh;
+    background-color: #607d8b;
+    display: flex;
+    align-items: center;
+    min-width: 1250px;
+    min-height: 60px;
+}
+
+.container .header .back-btn {
+    border: 0;
+    background: transparent;
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+.container .header .user-btn {
+    border: 0;
+    background: transparent;
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+.container .header .create-btn {
+    border: 1px solid #2b2a2a;
+    border-radius: 60px;
+    background-color: rgba(2, 2, 2, 0.5);
+    color: gray;
+    margin-left: 350px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.container .header .create-btn:hover {
+    background-color: rgba(2, 2, 2, 0.25);
+    color: black;
+    cursor: pointer;
+}
+
+.container .header .search-box {
+    background-color: rgba(2, 2, 2, 0.5);
+    margin-left: 100px;
+    align-items: center;
+    border-radius: 60px;
+    padding: 5px 10px;
+    display: flex;
+}
+
+.container .table-container {
+    min-height: 480px;
+}
+
+.container table {
+    text-align: center;
+    width: 100%;
+    table-layout: fixed;
+}
+
+th {
+    background: #c0c0c0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th, td{
+    padding: 3px 1px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+tr:nth-child(odd) {
+    background-color: #eeeeee;
+}
+
+.container .edit-btn {
+    border: 0;
+    margin-right: 20px;
+    background: transparent;
+}
+
+.container .delete-btn {
+    border: 0;
+    background: transparent;
+}
+
+.container .delete-btn img:hover {
+    content: url('../../assets/images/delete-hover.png');
+}
+
+.container table tr td button img {
+    width: 20px;
+    height: 20px;
+}
+
+.container .page-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+
+.create-bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-container {
+    width: 700px;
+    height: 400px;
+    background-color: whitesmoke;
+}
+
+.create-header {
+    width: 100%;
+    height: 8%;
+    background-color: #607d8b;
+    padding-top: 5px;
+    text-transform: uppercase;
+    font-size: 25px;
+    color: #c0c0c0;
+}
+
+.create-title {
+    margin-left: 260px;
+}
+
+.create-main {
+    display: flex;
+    width: 700px;
+    height: 360px;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-text {
+    font-size: 17px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 20px;
+}
+
+.create-name, .create-price, .create-gender, .create-color, .create-type, .create-size, .create-img {
+    margin-top: 23px;
+    margin-bottom: 23px;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+#create-input-name, #create-input-price, #create-input-gender, #create-input-color, #create-input-type, #create-input-size {
+    border: 1px solid black;
+    padding: 2px;
+    border-radius: 10px;
+}
+
+.create-btn-cancel {
+    border: 0;
+    background: transparent;
+    margin-left: 20px;
+}
+
+.add-btn {
+    margin-left: 50px;
+    height: 250px;
+    width: 40px;
+    color: black;
+    background-color: rgb(22, 155, 22);
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+}
+
+.add-btn:hover {
+    background-color: rgb(32, 197, 32);
+}
+
+.create-alert {
+    font-size: 10px;
+    color: red;
+    margin-left: 20px;
+}
+
+.update-bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.update-container {
+    width: 700px;
+    height: 400px;
+    background-color: whitesmoke;
+}
+
+.update-header {
+    width: 100%;
+    height: 8%;
+    background-color: #607d8b;
+    padding-top: 5px;
+    text-transform: uppercase;
+    font-size: 25px;
+    color: #c0c0c0;
+}
+
+.title {
+    margin-left: 260px;
+}
+
+.update-main {
+    display: flex;
+    width: 700px;
+    height: 360px;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    font-size: 17px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 20px;
+}
+
+.update-name, .update-price, .update-gender, .update-color, .update-type, .update-size {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+#update-input-name, #update-input-price, #update-input-gender, #update-input-color, #update-input-type, #update-input-size {
+    border: 1px solid black;
+    padding: 2px;
+    border-radius: 10px;
+}
+
+.btn-cancel {
+    border: 0;
+    background: transparent;
+    margin-left: 20px;
+}
+
+.add-btn {
+    margin-left: 50px;
+    height: 250px;
+    width: 40px;
+    color: black;
+    background-color: rgb(250, 246, 7);
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+}
+
+.add-btn:hover {
+    background-color: rgb(230, 226, 18);
+}
+
+.alert {
+    font-size: 10px;
+    color: red;
+    margin-left: 20px;
+}

@@ -1,0 +1,9 @@
+.search-bar {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: black;
+}

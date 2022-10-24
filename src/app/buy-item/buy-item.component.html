@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="header">
+        <p class="header-title">Webshop</p>
+    </div>
+    <div class="main">
+        <div class="img-container">
+            <img [src]="cloth.img">
+        </div>
+        <div class="detail-container">
+            <button class="back-btn" (click)="goBack()"><img src="assets/images/back-arrow.png"></button>
+            <div class="details">
+                <p class="name">{{cloth.name}}</p>
+                <p class="price">Price: {{cloth.price}} Ft</p>
+                <p class="color">Color: {{cloth.color}}</p>
+                <p class="size-title">Available sizes:</p>
+                <div class="size-options">
+                    <p class="size">{{cloth.size}}</p>
+                    <p class="size" id="no-available">XXL</p>
+                </div>
+            </div>
+            <button class="buy-btn" (click)="addToCart(cloth)">Add to cart</button>
+        </div>
+    </div>
+</div>

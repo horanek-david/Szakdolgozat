@@ -1,0 +1,171 @@
+<div class="container">
+    <div class="header">
+        <button class="back-btn" routerLink="/webshop"><img src="assets/images/back-arrow.png"></button>
+        <button class="user-btn" routerLink="/users"><img src="assets/images/users.png"></button>
+        <button class="create-btn" (click)="onOpenCreate()">Create</button>
+        <div class="search-box">
+            <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
+            <img src="assets/images/search.png">
+        </div>
+    </div>
+
+    <div class="table-container">
+
+        <table>
+            <tr>
+                <th width="20%">Name</th>
+                <th width="25%">ID</th>
+                <th width="10%">Price</th>
+                <th width="10%">Gender</th>
+                <th width="10%">Color</th>
+                <th width="10%">Type</th>
+                <th width="5%">Size</th>
+                <th width="10%"></th>
+            </tr>
+            <tr *ngFor="let cloth of clothes | paginate: {itemsPerPage:14,currentPage:p}">
+                <td>{{cloth.name}}</td>
+                <td>{{cloth._id}}</td>
+                <td>{{cloth.price}}</td>
+                <td>{{cloth.gender}}</td>
+                <td>{{cloth.color}}</td>
+                <td>{{cloth.type}}</td>
+                <td>{{cloth.size}}</td>
+                <td>
+                    <button class="edit-btn" (click)="onOpenUpdate(cloth._id)"><img src="assets/images/edit.png"></button>
+                    <button class="delete-btn" (click)="onDeleteCloth(cloth._id)"><img src="assets/images/delete.png"></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="page-box">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>
+
+<div class="create-bg" *ngIf="isVisibleAdd">
+    <div class="create-container">
+        <div class="create-header">
+            <button class="create-btn-cancel" (click)="onCloseCreate()"><img src="assets/images/back-arrow.png"></button>
+            <span class="create-title">Add</span>
+        </div>
+        <form [formGroup]="clothFormCreate" (ngSubmit)="onAddPost()">
+            <div class="create-main">
+                <div class="create-text-container">
+                    <p class="create-text">Name:</p>
+                    <p class="create-text">Price:</p>
+                    <p class="create-text">Gender:</p>
+                    <p class="create-text">Color:</p>
+                    <p class="create-text">Type:</p>
+                    <p class="create-text">Size:</p>
+                    <p class="create-text">Image:</p>
+                </div>
+                <div class="create-input">
+                    <div class="create-name">
+                        <input type="text" id="create-input-name" formControlName="create_name" [style.borderColor]="create_color">
+                    </div>
+                    <div class="create-price">
+                        <input type="text" id="create-input-price" formControlName="create_price">
+                    </div>
+                    <div class="create-gender">
+                        <select name="create-gender" id="create-input-gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="create-color">
+                        <input type="text" id="create-input-color" formControlName="create_color">
+                    </div>
+                    <div class="create-type">
+                        <select name="create-type" id="create-input-type">
+                            <option value="shirt">Shirt</option>
+                            <option value="t-shirt">T-shirt</option>
+                            <option value="coat">Coat</option>
+                            <option value="trousers">Trousers</option>
+                            <option value="skirt">Skirt</option>
+                        </select>
+                    </div>
+                    <div class="create-size">
+                        <select name="create-size" id="create-input-size">
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+                    <div class="create-img">
+                        <input type="file" id="file" accept="image/*" (change)="handleInputChange($event)">
+                    </div>
+                </div>
+                <div class="create-btn-container">
+                    <button class="add-btn">+</button>
+                </div>
+                <p class="create-alert" *ngIf="create_alert">Wrong input!</p>
+                <p class="create-alert" *ngIf="create_alert2">Already used name!</p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="update-bg" *ngIf="isVisibleUpdate">
+    <div class="update-container">
+        <div class="update-header">
+            <button class="btn-cancel" (click)="onCloseUpdate()"><img src="assets/images/back-arrow.png"></button>
+            <span class="title">UPDATE</span>
+        </div>
+        <form [formGroup]="clothFormUpdate">
+            <div class="update-main">
+                <div class="text-container">
+                    <p class="text">Name:</p>
+                    <p class="text">Price:</p>
+                    <p class="text">Gender:</p>
+                    <p class="text">Color:</p>
+                    <p class="text">Type:</p>
+                    <p class="text">Size:</p>
+                </div>
+                <div class="input">
+                    <div class="update-name">
+                        <input type="text" id="update-input-name" formControlName="update_name">
+                    </div>
+                    <div class="update-price">
+                        <input type="text" id="update-input-price" formControlName="update_price">
+                    </div>
+                    <div class="update-gender">
+                        <select name="update-gender" id="update-input-gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="update-color">
+                        <input type="text" id="update-input-color" formControlName="update_color">
+                    </div>
+                    <div class="update-type">
+                        <select name="update-type" id="update-input-type">
+                            <option value="shirt">Shirt</option>
+                            <option value="t-shirt">T-shirt</option>
+                            <option value="coat">Coat</option>
+                            <option value="trousers">Trousers</option>
+                            <option value="skirt">Skirt</option>
+                        </select>
+                    </div>
+                    <div class="update-size">
+                        <select name="update-size" id="update-input-size">
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button type="button" class="add-btn" (click)="onUpdateCloth()">O</button>
+                </div>
+                <p class="alert" *ngIf="update_alert">Wrong input!</p>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

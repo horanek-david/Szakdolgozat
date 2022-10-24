@@ -1,0 +1,32 @@
+<section>
+    <div class="img-box">
+        <img src="assets/images/register-img.jpg" alt="">
+    </div>
+    <div class="content-box"> 
+        <div class="form-box">
+            <h2>Register</h2>
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                <div class="input-box">
+                    <span>Username</span>
+                    <input type="text" id="username" name="usernametxt" formControlName="username" [style.borderColor]="color">
+                </div>
+                <div class="input-box">
+                    <span>Email</span>
+                    <input type="email" id="email" name="emailtxt" formControlName="email" [style.borderColor]="color">
+                </div>
+                <div class="input-box">
+                    <span>Password</span>
+                    <input type="password" id="password" name="passwordtxt" formControlName="password" [style.borderColor]="color">
+                </div>
+                <div class="input-box">
+                    <input type="submit"  value="Sign up" name="">
+                    <p id="incorrect" *ngIf="isVisible">Your username or password may be incorrect!</p>
+                    <p id="incorrect" *ngIf="isTextVisible">Your username or email already exist!</p>
+                </div>
+                <div class="input-box">
+                    <p>Already registered? <a routerLink="/login">Sign in</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

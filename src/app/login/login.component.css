@@ -1,0 +1,160 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+section {
+    position: relative;
+    width: 80%;
+    height: 80vh;
+    display: flex;
+    top: 50px;
+
+    margin: auto;
+    min-height: 500px;
+    min-width: 1000px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+section .img-box {
+    position: relative;
+    width: 50%;
+    height: 100%;
+}
+
+section .img-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*background: linear-gradient(225deg, #ffe4c4, #c0c0c0);
+    z-index: 1;                                                 Képes színt keverni a képre.
+    mix-blend-mode: screen;*/
+}
+
+section .img-box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+section .content-box {
+    display: flex;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+}
+
+section .content-box .form-box {
+    width: 50%;
+}
+
+section .content-box .form-box h2{
+    color: #607d8b;
+    font-weight: 400;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-bottom: 3px solid #607d8b;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+section .content-box .form-box .input-box {
+    margin-bottom: 20px;
+}
+
+section .content-box .form-box .input-box span{
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: black;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+section .content-box .form-box .input-box input{
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid #c0c0c0;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: black;
+    background: transparent;
+    border-radius: 10px;
+}
+
+section .content-box .form-box .input-box input[type="submit"] {
+    background-color: lightgray;
+    color: black;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+section .content-box .form-box .input-box input[type="submit"]:hover {
+    background-color: darkgray;
+}
+
+section .content-box .form-box .input-box #incorrect-msg {
+    font-size: 11px;
+    text-align: center;
+    padding-top: 5px;
+    color: red;
+}
+
+section .content-box .form-box .input-box p {
+    color: black;
+}
+
+section .content-box .form-box .input-box p a{
+    color: midnightblue;
+}
+
+section .content-box .form-box .input-box p a:hover{
+    color: darkgray;
+}
+
+section .content-box .form-box h3 {
+    color: #607d8b;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+section .content-box .form-box .social-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section .content-box .form-box .social-list li{
+    list-style: none;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #c0c0c0;
+    border-radius: 50%;
+    margin: 0 7px;
+    cursor: pointer;
+}
+
+section .content-box .form-box .social-list li:hover{
+    background: darkgray;
+}

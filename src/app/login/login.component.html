@@ -1,0 +1,32 @@
+<section>
+    <div class="img-box">
+        <img src="assets/images/login-img.jpg" alt="">
+    </div>
+    <div class="content-box"> 
+        <div class="form-box">
+            <h2>Login</h2>
+            <form (ngSubmit)="onSubmit()">
+                <div class="input-box">
+                    <span>Username</span>
+                    <input type="text" id="input-username" [style.borderColor]="color">
+                </div>
+                <div class="input-box">
+                    <span>Password</span>
+                    <input type="password" id="input-password" [style.borderColor]="color">
+                </div>
+                <div class="input-box">
+                    <input type="submit"  value="Sign in" name="">
+                    <p id="incorrect-msg" *ngIf="isVisible">Your username or password may be incorrect!</p>
+                </div>
+                <div class="input-box">
+                    <p>Don't have an account? <a routerLink="/register">Sign up</a></p>
+                </div>
+            </form>
+            <h3>Login with social media</h3>
+            <ul class="social-list">
+                <li><img src="assets/images/twitter.png"></li>
+                <li><img src="assets/images/facebook.png"></li>
+            </ul>
+        </div>
+    </div>
+</section>

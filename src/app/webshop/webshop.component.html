@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="header">
+        <button class="admin" routerLink="/administrator" *ngIf="isAdministratorVisible"><img src="assets/images/administrator.png"></button>
+        <p class="header-title">Webshop</p>
+        <div class="search-box">
+            <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
+            <img src="assets/images/search.png">
+        </div>
+        <button class="cart" routerLink="/cart"><img src="assets/images/cart.png"></button>
+        <button class="log-out" (click)="logOut()"><img src="assets/images/log-out.png"></button>
+    </div>
+    
+    <div class="main">
+        <div class="filter-box">
+            <app-filter (checkedChanged)="onCheckedChanged($event)"></app-filter>
+        </div>
+        <div class="goods-box">
+            <div class="no-item" *ngIf="noSuchACloth"><p>No such an item!</p></div>
+            <ul>
+                <li class="goods-list" *ngFor="let cloth of clothes | paginate: {itemsPerPage:16,currentPage:p}">
+                    <div class="goods-container">
+                        <div class="goods-img"><img [src]="cloth.img"></div>
+                        <div class="goods-details">
+                            <p class="name">{{cloth.name}}</p>
+                            <p class="price">{{cloth.price}} Ft</p>
+                            <button class="watch-btn" (click)="seeItem(cloth)">SEE MORE</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="page-box">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>

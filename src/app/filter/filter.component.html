@@ -1,0 +1,45 @@
+<div class="filter-box">
+<p class="filter-title">Filters</p>
+<div class="price-box">
+    <p class="part-title">Price</p>
+    <div class="price-box2" *ngIf="isPriceVisible">
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedPrice1" (change)="onChange(isCheckedPrice1? 'true':'false', 'price1')">0 - 2000 Ft</label>
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedPrice2" (change)="onChange(isCheckedPrice2? 'true':'false', 'price2')">2000 - 4000 Ft</label>
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedPrice3" (change)="onChange(isCheckedPrice3? 'true':'false', 'price3')">4000 - 8000 Ft </label>
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedPrice4" (change)="onChange(isCheckedPrice4? 'true':'false', 'price4')">8000 - 10000 Ft </label>
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedPrice5" (change)="onChange(isCheckedPrice5? 'true':'false', 'price5')">10000 - 15000 Ft </label>
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedPrice6" (change)="onChange(isCheckedPrice6? 'true':'false', 'price6')">15000 - 20000 Ft </label>
+    </div>
+</div>
+<button id="hide-1" class="hide" (click)="isPriceHidden()"><img src="assets/images/close-arrow.png"></button>
+<div class="gender-box">
+    <p class="part-title">Gender</p>
+    <div class="gender-box2" *ngIf="isGenderVisible">
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedMale" (change)="onChange(isCheckedMale? 'true':'false', 'male')">Male</label>
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedFemale" (change)="onChange(isCheckedFemale? 'true':'false', 'female')">Female</label>
+    </div>
+</div>
+<button id="hide-2" class="hide" (click)="isGenderHidden()"><img src="assets/images/close-arrow.png"></button>
+<div class="type-box">
+    <p class="part-title">Type</p>
+    <div class="type-box2" *ngIf="isTypeVisible">
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedShirt" (change)="onChange(isCheckedShirt? 'true':'false', 'shirt')">Shirt</label>
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedTshirt" (change)="onChange(isCheckedTshirt? 'true':'false', 'tshirt')">T-Shirt</label>
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedCoat" (change)="onChange(isCheckedCoat? 'true':'false', 'coat')">Coat</label>
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedTrousers" (change)="onChange(isCheckedTrousers? 'true':'false', 'trousers')">Trousers</label>
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedSkirt" (change)="onChange(isCheckedSkirt? 'true':'false', 'skirt')">Skirt</label>
+    </div>
+</div>
+<button id="hide-3" class="hide" (click)="isTypeHidden()"><img src="assets/images/close-arrow.png"></button>
+<div class="size-box">
+    <p class="part-title">Size</p>
+    <div class="size-box2" *ngIf="isSizeVisible">
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedSizeXS" (change)="onChange(isCheckedSizeXS? 'true':'false', 'sizexs')">XS size</label>
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedSizeS" (change)="onChange(isCheckedSizeS? 'true':'false', 'sizes')">S size</label>
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedSizeM" (change)="onChange(isCheckedSizeM? 'true':'false', 'sizem')">M size </label>
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedSizeL" (change)="onChange(isCheckedSizeL? 'true':'false', 'sizel')">L size</label>
+        <label class="check-text"><input type="checkbox" class="check" [(ngModel)]="isCheckedSizeXL" (change)="onChange(isCheckedSizeXL? 'true':'false', 'sizexl')">XL size</label>
+    </div>
+</div>
+<button id="hide-4" class="hide" (click)="isSizeHidden()"><img src="assets/images/close-arrow.png"></button>
+</div>
