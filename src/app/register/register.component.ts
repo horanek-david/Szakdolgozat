@@ -54,16 +54,17 @@ export class RegisterComponent implements OnInit {
     this.user.password = password;
     this.user.email = email;
 
+    if(this.userForm.valid){
+      this.color = "c0c0c0";
+      this.isVisible = false;
+    }else if(!this.userForm.valid){
+      this.color = "red";
+      this.isVisible = true;
+      return;
+    }
+
     this.appService.createUser(this.user).subscribe(data => {
       var msg = data;
-
-      if(this.userForm.valid){
-        this.color = "c0c0c0";
-        this.isVisible = false;
-      }else if(!this.userForm.valid){
-        this.color = "red";
-        this.isVisible = true;
-      }
 
       if(!msg){
         this.router.navigate(['login']);

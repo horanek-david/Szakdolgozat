@@ -256,8 +256,8 @@ tr:nth-child(odd) {
 }
 
 .update-name, .update-price, .update-gender, .update-color, .update-type, .update-size {
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 23px;
+    margin-bottom: 23px;
     margin-left: 10px;
     margin-right: 20px;
 }

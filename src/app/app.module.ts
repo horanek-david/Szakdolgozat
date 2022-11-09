@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from "@angular/forms";
@@ -18,6 +18,9 @@ import { CartComponent } from './cart/cart.component';
 import { FilterComponent } from './filter/filter.component';
 import { AdministratorComponent } from './administrator/administrator.component';
 import { UsersComponent } from './users/users.component';
+
+import { AuthInterceptor } from './services/auth.interceptor';
+import { AuthGuard, IsSignedInGuard } from './services/auth.guard';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,16 @@ import { UsersComponent } from './users/users.component';
     FormsModule,
     NgxPaginationModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+
+    },
+    AuthGuard,
+    IsSignedInGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

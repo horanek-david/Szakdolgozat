@@ -20,9 +20,11 @@ function getClient(){
   return new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true});
 }
 
+app.use(express.json({limit: '25mb'}));
+app.use(express.urlencoded({extended:true}));
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
 
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
@@ -50,13 +52,28 @@ app.post("/login", bodyParse.json(), function (req, res) {
     });
 });
 
+function authenticateToken(req, res, next){
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  if (token === null){
+    return res.sendStatus(401)
+  }
+
+  jwt.verify(token, JWT_SECRET, (err) => {
+    if(err){
+      return res.sendStatus(403);
+    }
+    next();
+  })
+}
+
 
 app.post("/register", bodyParse.json(), function(req, res) {
   const newUser = {
     name: req.body.name,
     password: crypto.createHash("md5").update(req.body.password).digest(),
     email: req.body.email,
-    role: "user"
+    role: "admin"
   };
 
   var alreadyExist = false;
@@ -76,7 +93,7 @@ app.post("/register", bodyParse.json(), function(req, res) {
   });
 });
 
-app.get("/clothes", function (req, res) {
+app.get("/clothes", authenticateToken, function (req, res) {
   const client = getClient();
 
   client.connect(async (err) => {
@@ -87,7 +104,7 @@ app.get("/clothes", function (req, res) {
   });                             //If the search input isnt empty then the bottom one will write out the filtered ones.
 });
 
-app.get("/clothes/:search", function (req, res) {
+app.get("/clothes/:search", authenticateToken, function (req, res) {
   const s = req.params.search;
   var search2 = {"name": new RegExp(s,'i')};
   const client = getClient();
@@ -110,7 +127,7 @@ function getID(raw){
   }
 };
 
-app.delete("/delete/:id", function(req, res){
+app.delete("/delete/:id", authenticateToken, function(req, res){
   const id = new getID(req.params.id);
   if(!id){
     res.send({error: "invalide id"});
@@ -129,7 +146,7 @@ app.delete("/delete/:id", function(req, res){
   });
 });
 
-app.get("/allcloth", function (req, res) {
+app.get("/allcloth", authenticateToken, function (req, res) {
   const client = getClient();
 
 
@@ -141,7 +158,7 @@ app.get("/allcloth", function (req, res) {
   });
 });
 
-app.post('/create', bodyParse.json(), function(req, res){
+app.post('/create', authenticateToken, bodyParse.json(), function(req, res){
   const newClothes={
       name: req.body.name,
       price: Number(req.body.price),
@@ -161,7 +178,7 @@ app.post('/create', bodyParse.json(), function(req, res){
   });
 });
 
-app.post("/update", bodyParse.json(), function(req, res){
+app.put("/update", authenticateToken, bodyParse.json(), function(req, res){
   const id = new getID(req.body._id);
   if(!id){
     res.send({error: "invalide id"});
@@ -174,7 +191,8 @@ app.post("/update", bodyParse.json(), function(req, res){
     gender: req.body.gender,
     color: req.body.color,
     type: req.body.type,
-    size: req.body.size
+    size: req.body.size,
+    img: req.body.img
 };
 
   const client = getClient();
@@ -188,19 +206,20 @@ app.post("/update", bodyParse.json(), function(req, res){
       gender: updateClothes.gender,
       color: updateClothes.color,
       type: updateClothes.type,
-      size: updateClothes.size}
+      size: updateClothes.size,
+      img: updateClothes.img}
     }
     const result = await collection.updateOne(myquery, newvalues, function(err, res){
       if(err){
         throw err;
       }
     });
-    res.send(id);
+    res.send(result);
     client.close;
   });
 });
 
-app.post('/addcart', bodyParse.json(), function(req, res){
+app.post('/addcart', authenticateToken, bodyParse.json(), function(req, res){
   const newCart={
       uid: req.body.uid,
       cid: req.body.cid,
@@ -223,7 +242,7 @@ app.post('/addcart', bodyParse.json(), function(req, res){
   });
 });
 
-app.get("/getcart/:id", function (req, res) {
+app.get("/getcart/:id", authenticateToken, function (req, res) {
   const id = req.params.id;
   const client = getClient();
 
@@ -236,7 +255,7 @@ app.get("/getcart/:id", function (req, res) {
   
 });
 
-app.delete("/deletecart/:id", function(req, res){
+app.delete("/deletecart/:id", authenticateToken, function(req, res){
   const id = new getID(req.params.id);
   if(!id){
     res.send({error: "invalide id"});
@@ -250,12 +269,12 @@ app.delete("/deletecart/:id", function(req, res){
       res.send({error: "not found"});
       return;
     }
-    res.send({id: req.params.id});
+    res.send(result);
     client.close;
   });
 });
 
-app.post("/filter", bodyParse.json(), function (req, res) {
+app.post("/filter", authenticateToken, bodyParse.json(), function (req, res) {
   const newFilter = {
     search: req.body.search,
     price1: req.body.price1,
@@ -404,7 +423,7 @@ app.post("/filter", bodyParse.json(), function (req, res) {
   
 });
 
-app.post("/bought", bodyParse.json(), function(req, res){
+app.post("/bought", authenticateToken, bodyParse.json(), function(req, res){
   const id = req.body[0].uid;
 
 
@@ -435,7 +454,7 @@ app.get("/users", function (req, res) {
   });
 });
 
-app.post("/updaterole", bodyParse.json(), function(req, res){
+app.put("/updaterole", authenticateToken, bodyParse.json(), function(req, res){
   const id = new getID(req.body._id);
   const role = req.body.role;
   if(!id){

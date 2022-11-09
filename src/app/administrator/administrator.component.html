@@ -64,7 +64,7 @@
                         <input type="text" id="create-input-name" formControlName="create_name" [style.borderColor]="create_color">
                     </div>
                     <div class="create-price">
-                        <input type="text" id="create-input-price" formControlName="create_price">
+                        <input type="number" id="create-input-price" formControlName="create_price">
                     </div>
                     <div class="create-gender">
                         <select name="create-gender" id="create-input-gender">
@@ -101,7 +101,6 @@
                     <button class="add-btn">+</button>
                 </div>
                 <p class="create-alert" *ngIf="create_alert">Wrong input!</p>
-                <p class="create-alert" *ngIf="create_alert2">Already used name!</p>
             </div>
         </form>
     </div>
@@ -122,13 +121,14 @@
                     <p class="text">Color:</p>
                     <p class="text">Type:</p>
                     <p class="text">Size:</p>
+                    <p class="text">Image:</p>
                 </div>
                 <div class="input">
                     <div class="update-name">
                         <input type="text" id="update-input-name" formControlName="update_name">
                     </div>
                     <div class="update-price">
-                        <input type="text" id="update-input-price" formControlName="update_price">
+                        <input type="number" id="update-input-price" formControlName="update_price">
                     </div>
                     <div class="update-gender">
                         <select name="update-gender" id="update-input-gender">
@@ -156,6 +156,9 @@
                             <option value="L">L</option>
                             <option value="XL">XL</option>
                         </select>
+                    </div>
+                    <div class="create-img">
+                        <input type="file" id="file" accept="image/*" (change)="handleInputChange($event)">
                     </div>
                 </div>
                 <div class="btn-container">

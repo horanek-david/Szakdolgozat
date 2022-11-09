@@ -21,7 +21,6 @@ export class AdministratorComponent implements OnInit {
   imageSrc: string = '';
 
   create_alert: boolean = false;
-  create_alert2: boolean = false;
   create_color = "black";
 
   update_alert: boolean = false;
@@ -53,7 +52,6 @@ export class AdministratorComponent implements OnInit {
 
   onOpenCreate(){
     this.isVisibleAdd = true;
-    this.create_alert2 = false;
     this.create_alert = false;
     this.create_color = "black";
   }
@@ -75,8 +73,13 @@ export class AdministratorComponent implements OnInit {
   }
 
   onDeleteCloth(id: any){
-    this.appService.deleteCloth(id).subscribe(()=>{
-      this.ngOnInit();
+    this.appService.deleteCloth(id).subscribe((data)=>{
+      if(data != ""){
+        this.ngOnInit();
+      }else{
+        console.log("Something went wrong!");
+      }
+      
     });
   }
 
@@ -111,25 +114,13 @@ export class AdministratorComponent implements OnInit {
   handleReaderLoaded(event: any) {
     let reader = event.target;
     this.imageSrc = reader.result;
-    console.log(this.imageSrc)
   }
 
   onAddPost(){
-    
-    this.appService.getAllCloth().subscribe((data)=> {
-      this.clothes = data;
       
-      this.create_alert2 = false;
       this.create_alert = false;
       this.create_color = "black";
 
-      for(this.cloth of this.clothes){
-        if(this.cloth.name === this.clothFormCreate.value.create_name){
-          this.create_alert2 = true;
-          this.create_color = "red";
-          return;
-        }
-      }
 
       var name = (document.getElementById('create-input-name') as HTMLInputElement).value;
       var price = (document.getElementById('create-input-price') as HTMLInputElement).value;
@@ -156,7 +147,6 @@ export class AdministratorComponent implements OnInit {
       });
       this.onCloseCreate();
       
-    })
   }
 
   onOpenUpdate(id: any){
@@ -188,6 +178,7 @@ export class AdministratorComponent implements OnInit {
     this.cloth.color = color.toLocaleLowerCase();
     this.cloth.type = type;
     this.cloth.size = size;
+    this.cloth.img = this.imageSrc;
 
     if(!this.clothFormUpdate.valid){
       this.update_alert = true;

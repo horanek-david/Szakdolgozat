@@ -14,15 +14,15 @@ import { UsersComponent } from './users/users.component';
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent},
-  { path: 'home', component: HomeComponent},
+  { path: 'login', component: LoginComponent, canActivate:[IsSignedInGuard]},
+  { path: 'register', component: RegisterComponent,  canActivate:[IsSignedInGuard]},
+  { path: 'home', component: HomeComponent,  canActivate:[IsSignedInGuard]},
   { path: 'webshop', component: WebshopComponent, canActivate:[AuthGuard]},
   { path: 'buy-item', component: BuyItemComponent, canActivate:[AuthGuard]},
   { path: 'cart', component: CartComponent, canActivate:[AuthGuard]},
   { path: 'administrator', component: AdministratorComponent, canActivate:[AuthGuard, RoleGuard]},
   { path: 'users', component: UsersComponent, canActivate:[AuthGuard, RoleGuard]},
-  { path: '**', component: HomeComponent}
+  { path: '**', component: HomeComponent,  canActivate:[IsSignedInGuard]}
 ];
 
 @NgModule({

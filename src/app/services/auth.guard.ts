@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
 export class IsSignedInGuard implements CanActivate {
   constructor(private router: Router) { }
 
-  canActivate(): boolean {
+  canActivate(){
     const token = localStorage.getItem('token');
 
     if(token) {
